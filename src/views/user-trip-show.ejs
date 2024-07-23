@@ -1,0 +1,34 @@
+<%- include ('partials/_user-header') %>
+    
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
+        <div class="rounded-lg overflow-hidden max-h-[28rem] flex justify-center items-center">
+            <img src="<%= imagePaths[parseInt(trip.id) % imagePaths.length] %>" class="rounded-lg shadow-xl object-cover" alt="Descripción de la imagen">
+        </div>
+
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Viaje de <%= trip.origen %> a <%= trip.destino %></h2>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis commodo justo sed est facilisis, nec viverra lorem sodales. Phasellus ac augue quis dolor gravida scelerisque. Vestibulum ac augue vel ligula fringilla bibendum.
+            </p>
+            <p class="text-lg text-gray-600 leading-relaxed mt-4">
+                Fecha del viaje: <%= trip.fecha.toISOString().slice(0, 10) %><br>
+                Hora de salida: <%= trip.hora.slice(0, 5) %><br>
+                Duración del viaje: <%= trip.duracion %> hora<%= trip.duracion > 1 ? 's' : '' %><br>
+                Precio por tiquete: $<%= trip.precio %><br>
+                Tiquetes disponibles: <%= trip.tiquetes_disponibles %>
+            </p>
+            <form action="/user/trips/buy/<%= trip.id %>" method="POST">
+                <div class="mt-8">
+                    <label for="tiquetes" class="block mb-2 text-sm font-medium text-gray-900">Cantidad de tiquetes</label>
+                    <input type="number" min="1" max="<%= trip.tiquetes_disponibles %>" id="tiquetes" name="tiquetes" class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 " required />
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Comprar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

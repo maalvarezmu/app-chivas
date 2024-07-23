@@ -1,0 +1,41 @@
+<%- include ('partials/_user-header') %>
+    
+<script>
+    function confirmCancel(event) {
+        if (!confirm("¿Estás seguro de que deseas cancelar este tiquete?, si la hora de salida del viaje es dentro de las próximas 48 horas, no se hará el respectivo reembolso.")) {
+            event.preventDefault();
+        }
+    }
+</script>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
+        <div class="rounded-lg overflow-hidden max-h-[28rem] flex justify-center items-center">
+            <img src="<%= imagePaths[parseInt(ticket.viaje_id) % imagePaths.length] %>" class="rounded-lg shadow-xl object-cover" alt="Descripción de la imagen">
+        </div>
+
+        <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Viaje de <%= ticket.origen %> a <%= ticket.destino %></h2>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis commodo justo sed est facilisis, nec viverra lorem sodales. Phasellus ac augue quis dolor gravida scelerisque. Vestibulum ac augue vel ligula fringilla bibendum.
+            </p>
+            <p class="text-lg text-gray-600 leading-relaxed mt-4">
+                Fecha del viaje: <%= ticket.fecha.toISOString().slice(0, 10) %><br>
+                Hora de salida: <%= ticket.hora.slice(0, 5) %><br>
+                Duración del viaje: <%= ticket.duracion %> hora<%= ticket.duracion > 1 ? 's' : '' %><br>
+                Precio por tiquete: $<%= ticket.precio %><br>
+                Tiquetes comprados: <%= ticket.cantidad %>
+            </p>
+            <form action="/user/tickets/cancel/<%= ticket.viaje_id %>" method="POST" onsubmit="confirmCancel(event)">
+                <div class="mt-8">
+                    <label for="cantidad" class="block mb-2 text-sm font-medium text-gray-900">Cantidad de tiquetes a cancelar</label>
+                    <input type="number" min="1" max="<%= ticket.cantidad %>" id="cantidad" name="cantidad" class="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 " required />
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('partials/_footer') %>

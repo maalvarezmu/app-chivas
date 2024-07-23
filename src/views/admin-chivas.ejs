@@ -1,0 +1,71 @@
+<%- include ('partials/_admin-header') %>
+<script>
+    function confirmDeletion(event) {
+        if (!confirm("¿Estás seguro de que deseas eliminar esta chiva?, si la chiva se encontraba asignada a un viaje, se buscará un reemplazo, pero si no se encuentra ninguna chiva disponible, el viaje será cancelado y se hará un reembolso a los usuarios.")) {
+            event.preventDefault();
+        }
+    }
+</script>
+<div class="mx-10 md:mx-24 mt-5 flex justify-between">
+    <h1 class="text-2xl font-semibold text-gray-900">Chivas</h1>
+    <a href="/admin/chivas/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Agregar nueva chiva</a>
+</div>
+<div class="max-w-5xl md:mx-10 lg:mx-auto mt-5">
+    <% if (chivas.length == 0) { %>
+        <div class="flex justify-center items-center h-96">
+            <h1 class="text-2xl text-gray-700">No hay chivas agregadas</h1>
+        </div>
+    <% } else { %>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        id chiva
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        matrícula
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        capacidad
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        conductor
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        estado
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% chivas.forEach(chiva => { %>
+                    <tr class="bg-white border-b">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <%= chiva.id %>
+                        </th>
+                        <td class="px-6 py-4">
+                            <%= chiva.matricula %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= chiva.capacidad %> persona<%= chiva.capacidad > 1 ? 's' : '' %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= chiva.conductor %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= chiva.estado %>
+                        </td>
+                        <td class="px-6 py-4 flex flex-col lg:block">
+                            <a href="/admin/chivas/edit/<%= chiva.id %>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</a>
+                            <a href="/admin/chivas/delete/<%= chiva.id %>" onclick="confirmDeletion(event)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-3 lg:ml-2">Eliminar</a>
+                        </td>
+                    </tr> 
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+</div>
+   
+<%- include ('partials/_footer') %>

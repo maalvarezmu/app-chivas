@@ -1,0 +1,48 @@
+<%- include ('partials/_admin-header') %>
+
+<script>
+    function confirmDeletion(event) {
+        if (!confirm("¿Estás seguro de que deseas actualizar esta chiva?, si la chiva se encontraba asignada a un viaje, se buscará un reemplazo, pero si no se encuentra ninguna chiva disponible, el viaje será cancelado y se hará un reembolso a los usuarios.")) {
+            event.preventDefault();
+        }
+    }
+</script>
+
+<form action="/admin/chivas/update/<%= chiva.id %>" onsubmit="confirmDeletion(event)"  method="POST" class="max-w-sm mx-auto">
+    <div class="flex justify-center mt-8 mb-5">
+        <h1 class="text-center text-xl">Editar chiva</h1>
+    </div>
+     <div class="mb-5">
+        <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">Matrícula</label>
+        <input type="text" id="matricula" name="matricula" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required pattern="[A-Z]{3}[0-9]{3}" title="El formato de la matrícula debe ser AAA000" 
+        <% if ('matricula' in chiva) { %> value="<%= chiva.matricula %>" <% } %> />
+    </div>
+    <div class="mb-5">
+        <label for="capacidad" class="block mb-2 text-sm font-medium text-gray-900">Capacidad</label>
+        <input type="number" min="1" max="50" id="capacidad" name="capacidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required 
+        <% if ('capacidad' in chiva) { %> value="<%= chiva.capacidad %>" <% } %> />
+    </div>
+    <div class="mb-5">
+        <label for="conductor" class="block mb-2 text-sm font-medium text-gray-900">Conductor</label>
+        <input type="text" id="conductor" name="conductor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required 
+        <% if ('conductor' in chiva) { %> value="<%= chiva.conductor %>" <% } %> />
+    </div>
+    <div class="mb-5">
+        <label for="estado" class="block mb-2 text-sm font-medium text-gray-900">Estado</label>
+        <select id="estado" name="estado" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
+            <option value="" disabled>Seleccione un estado</option>
+            <option
+            <% if ('estado' in chiva && chiva.estado === 'disponible') { %> selected <% } %>
+            value="disponible">Disponible</option>
+            <option 
+            <% if ('estado' in chiva && chiva.estado === 'no disponible') { %> selected <% } %>
+            value="no disponible">No disponible</option>
+        </select>
+    </div>
+    <div class="flex justify-center">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</button>
+    </div>
+</form>
+
+<%- include ('partials/_footer') %>
+  

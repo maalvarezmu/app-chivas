@@ -1,0 +1,69 @@
+<%- include ('partials/_admin-header') %>
+
+<form action="/admin/trips" method="POST" class="max-w-sm mx-auto">
+    <div class="flex justify-center mt-8 mb-5">
+        <h1 class="text-center text-xl">Agregar nuevo viaje</h1>
+    </div>
+     <div class="mb-5">
+        <label for="fecha" class="block mb-2 text-sm font-medium text-gray-900">Fecha</label>
+        <input type="date" id="fecha" name="fecha" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required 
+        <% if ('fecha' in data) { %> value="<%= data.fecha %>" <% } %> />
+    </div>
+    <div class="mb-5">
+        <label for="hora" class="block mb-2 text-sm font-medium text-gray-900">Hora de salida</label>
+        <input type="time" id="hora" name="hora" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required
+        <% if ('hora' in data) { %> value="<%= data.hora.slice(0,5) %>" <% } %> />
+    </div>
+    <div class="mb-5">
+        <label for="duracion" class="block mb-2 text-sm font-medium text-gray-900">Duración en horas</label>
+        <input type="number" min="1" max="12" id="duracion" name="duracion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required 
+        <% if ('duracion' in data) { %> value="<%= data.duracion %>" <% } %> />
+    </div>
+     <div class="mb-5">
+        <label for="chiva" class="block mb-2 text-sm font-medium text-gray-900">Chiva</label>
+        <select id="chiva" name="chiva"
+        <% if ('message' in data && data.message === 'chiva') { %>
+            class="bg-gray-50 border border-red-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 " required>
+        <% } else { %>
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
+        <% } %>
+            <option value="" disabled selected>Seleccione un chiva</option>
+            <% chivas.forEach(chiva => { %>
+               <% if (chiva.estado === 'disponible') { %>
+                <option value="<%= chiva.id %>">
+                    <%= chiva.matricula %>
+                </option>
+                <% } %>
+            <% }) %>
+        </select>
+        <% if ('message' in data && data.message === 'chiva') { %>
+            <p class="text-red-500 text-xs italic">La chiva seleccionada no se encontraba disponible en ese horario</p>
+        <% } %>
+    </div>
+    <div class="mb-5">
+        <label for="origen" class="block mb-2 text-sm font-medium text-gray-900">Origen</label>
+        <input type="text" id="origen" name="origen" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required 
+        <% if ('origen' in data) { %> value="<%= data.origen %>" <% } %> />
+    </div>
+    <div class="mb-5">
+        <label for="destino" class="block mb-2 text-sm font-medium text-gray-900">Destino</label>
+        <input type="text" id="destino" name="destino" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required
+        <% if ('destino' in data) { %> value="<%= data.destino %>" <% } %> />
+    </div>
+    <div class="mb-5">
+        <label for="precio" class="block mb-2 text-sm font-medium text-gray-900">Precio por tiquete</label>
+        <input type="number" step="1" min="1" id="precio" name="precio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required
+        <% if ('precio' in data) { %> value="<%= data.precio %>" <% } %> />
+    </div>
+    <div class="flex justify-center">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Agregar</button>
+    </div>
+</form>
+<script>
+    const dateInput = document.getElementById('fecha');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+</script>
+
+<%- include ('partials/_footer') %>
+  

@@ -1,0 +1,33 @@
+<%- include ('partials/_admin-header') %>
+
+<form action="/admin/chivas" method="POST" class="max-w-sm mx-auto">
+    <div class="flex justify-center mt-8 mb-5">
+        <h1 class="text-center text-xl">Agregar nueva chiva</h1>
+    </div>
+     <div class="mb-5">
+        <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">Matrícula</label>
+        <input type="text" id="matricula" name="matricula" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required pattern="[A-Z]{3}[0-9]{3}" title="El formato de la matrícula debe ser AAA000" />
+    </div>
+    <div class="mb-5">
+        <label for="capacidad" class="block mb-2 text-sm font-medium text-gray-900">Capacidad</label>
+        <input type="number" min="1" max="50" id="capacidad" name="capacidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+    </div>
+    <div class="mb-5">
+        <label for="conductor" class="block mb-2 text-sm font-medium text-gray-900">Conductor</label>
+        <input type="text" id="conductor" name="conductor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required/>
+    </div>
+    <div class="mb-5">
+        <label for="estado" class="block mb-2 text-sm font-medium text-gray-900">Estado</label>
+        <select id="estado" name="estado" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
+            <option value="" disabled selected>Seleccione un estado</option>
+            <option value="disponible">Disponible</option>
+            <option value="no disponible">No disponible</option>
+        </select>
+    </div>
+    <div class="flex justify-center">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Agregar</button>
+    </div>
+</form>
+
+<%- include ('partials/_footer') %>
+  

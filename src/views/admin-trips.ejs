@@ -1,0 +1,89 @@
+<%- include ('partials/_admin-header') %>
+<script>
+    function confirmDeletion(event) {
+        if (!confirm("¿Estás seguro de que deseas eliminar este viaje? Si hay tiquetes vendidos, se hará un reembolso a los usuarios.")) {
+            event.preventDefault();
+        }
+    }
+</script>
+<div class="mx-10 md:mx-24 mt-5 flex justify-between">
+    <h1 class="text-2xl font-semibold text-gray-900">Viajes</h1>
+    <a href="/admin/trips/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Agregar nuevo viaje</a>
+</div>
+<div class="max-w-screen-lg md:mx-10 lg:mx-auto mt-5">
+    <% if (trips.length == 0) { %>
+        <div class="flex justify-center items-center h-96">
+            <h1 class="text-2xl text-gray-700">No hay viajes disponibles</h1>
+        </div>
+    <% } else { %>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        id viaje
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Fecha y hora
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        duración 
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        chiva
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        origen
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        destino
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        tiquetes
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        precio
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% trips.forEach(trip => { %>
+                    <tr class="bg-white border-b">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <%= trip.id %>
+                        </th>
+                        <td class="px-6 py-4">
+                            <%= trip.fecha.toISOString().slice(0, 10) %> <%= trip.hora.slice(0, 5) %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= trip.duracion %> hora<%= trip.duracion > 1 ? 's' : '' %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= trip.matricula %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= trip.origen %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= trip.destino %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= trip.tiquetes_disponibles %>
+                        </td>
+                        <td class="px-6 py-4">
+                            $<%= trip.precio %>
+                        </td>
+                        <td class="px-6 py-4 flex flex-col md:flex-row">
+                            <a href="/admin/trips/edit/<%= trip.id %>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</a>
+                            <a href="/admin/trips/delete/<%= trip.id %>" onclick="confirmDeletion(event)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-3 md:mt-0 md:ml-2">Eliminar</a>
+                        </td>
+                    </tr> 
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+</div>
+   
+<%- include ('partials/_footer') %>

@@ -20,11 +20,11 @@ __Cancelación y Devolución:__ Como usuario puedes cancelar tiquetes comprados 
 
 __Administrar perfil:__ Como usuario puedes editar tu perfil, cambiar tu nombre, correo electrónico y contraseña.
 
-### Prerrequisitos 
+### Prerrequisitos
 
 Antes de comenzar, asegúrate de tener instalado en tu máquina local:
 
-* [Node.js](https://nodejs.org/) - Entorno de ejecución para JavaScript
+* [npm](https://www.npmjs.com/) - Gestor de paquetes de Node.js
 * [MySQL](https://www.mysql.com/) - Sistema de gestión de bases de datos
 
 ## Comenzando 

@@ -71,7 +71,7 @@ Antes de comenzar, asegúrate de tener instalado en tu máquina local:
 
 ## Construido con 
 
-* [Node.js](https://nodejs.org/) - Entorno de ejecución para JavaScript
+* [Node.js](https://nodejs.org/) - Backend de JavaScript
 * [EJS](https://ejs.co/) - Motor de plantillas para JavaScript
 * [Tailwind CSS](https://tailwindcss.com/) - Framework de diseño CSS
 * [MySQL](https://www.mysql.com/) - Sistema de gestión de bases de datos

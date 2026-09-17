@@ -1,8 +1,14 @@
-# APP de viajes en chivas
+# App Chivas — Sistema de Reservas de Viajes
 
-Esta es la implementación de un proyecto realizado para la materia de ingeniería de requisitos de la Universidad Nacional de Colombia. El proyecto consiste en una aplicación web que permite a la administración y compra de tiquetes de viajes en chivas.
+> *Full-stack ticket booking system for intercity "chivas" (traditional Colombian buses), with role-based access, trip/fleet management, and a complete purchase–cancellation–refund flow.*
 
-La aplicación cuenta con dos perfiles, un administrador y un usuario. El administrador puede gestionar los viajes y las chivas, mientras que el usuario puede comprar y cancelar tiquetes para los viajes disponibles y editar su perfil.
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)
+![EJS](https://img.shields.io/badge/EJS-B4CA65?style=flat&logo=ejs&logoColor=black)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat)
+
+Proyecto realizado para la materia de **Ingeniería de Requisitos** de la Universidad Nacional de Colombia. Es una aplicación web que permite administrar y comprar tiquetes de viajes en chivas, con dos perfiles diferenciados: administrador y usuario.
 
 ## Vista previa
 
@@ -10,71 +16,67 @@ La aplicación cuenta con dos perfiles, un administrador y un usuario. El admini
 
 ## Funcionalidades
 
-__Administrar viajes:__ Como administrador puedes crear, editar y eliminar viajes. Cada viaje tiene un origen, destino, fecha de salida, hora de salida, duración y precio por tiquete.
+| Rol | Funcionalidad | Descripción |
+|---|---|---|
+| Administrador | Administrar viajes | Crear, editar y eliminar viajes (origen, destino, fecha, hora, duración, precio). |
+| Administrador | Administrar chivas | Crear, editar y eliminar chivas (matrícula, capacidad, conductor, estado). |
+| Usuario | Consultar viajes disponibles | Ver el detalle de cada viaje y comprar tiquetes. |
+| Usuario | Cancelación y devolución | Cancelar tiquetes comprados con reembolso automático del valor. |
+| Usuario | Administrar perfil | Editar nombre, correo electrónico y contraseña. |
 
-__Administrar chivas:__ Como administrador puedes crear, editar y eliminar chivas. Cada chiva tiene una matrícula, capacidad de pasajeros, un conductor y un estado (disponible o no disponible).
+## Construido con
 
-__Consultar viajes disponibles:__ Como usuario puedes ver los viajes disponibles en la aplicación. Puedes ver todos los detalles de cada viaje y comprar tiquetes para un viaje específico.
+* [Node.js](https://nodejs.org/) — Backend de JavaScript
+* [EJS](https://ejs.co/) — Motor de plantillas
+* [Tailwind CSS](https://tailwindcss.com/) — Framework de diseño CSS
+* [MySQL](https://www.mysql.com/) — Sistema de gestión de bases de datos
 
-__Cancelación y Devolución:__ Como usuario puedes cancelar tiquetes comprados y recibir un reembolso del valor de los tiquetes.
-
-__Administrar perfil:__ Como usuario puedes editar tu perfil, cambiar tu nombre, correo electrónico y contraseña.
+## Comenzando
 
 ### Prerrequisitos
 
-Antes de comenzar, asegúrate de tener instalado en tu máquina local:
+* [npm](https://www.npmjs.com/) — Gestor de paquetes de Node.js
+* [MySQL](https://www.mysql.com/) — Sistema de gestión de bases de datos
 
-* [npm](https://www.npmjs.com/) - Gestor de paquetes de Node.js
-* [MySQL](https://www.mysql.com/) - Sistema de gestión de bases de datos
+### Instalación
 
-## Comenzando 
-
-1. Clona este repositorio en tu máquina local o descargar la carpeta comprimida del proyecto:
+1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/drifterDev/app-chivas.git
+   git clone https://github.com/maalvarezmu/app-chivas.git
    ```
 
-2. Crea el archivo `.env` en la raíz del proyecto y agrega las siguientes variables de entorno:
+2. Crea el archivo `.env` en la raíz del proyecto:
 
-    ```bash
-    DB_HOST=el_host_de_tu_servidor_mysql
-    DB_USER=tu_usuario
-    DB_PASSWORD=tu_contraseña
-    DB_PORT=el_puerto_de_tu_servidor_mysql
-    DB_DATABASE=tu_base_de_datos
-    ```
+   ```bash
+   DB_HOST=el_host_de_tu_servidor_mysql
+   DB_USER=tu_usuario
+   DB_PASSWORD=tu_contraseña
+   DB_PORT=el_puerto_de_tu_servidor_mysql
+   DB_DATABASE=tu_base_de_datos
+   ```
 
-3. Ejecuta y crea la base de datos en tu servidor MySQL, todos los comandos esenciales para la creación de la base de datos se encuentran en el archivo `database/db.sql`.
+3. Crea la base de datos ejecutando el script incluido en `database/db.sql`.
 
-### Instalación 
-
-1. Descargar las dependencias necesarias del proyecto:
+4. Instala las dependencias:
 
    ```bash
    npm install
    ```
 
-2. Correr el comando para construir los estilos de Tailwind CSS:
+5. Construye los estilos de Tailwind CSS:
 
    ```bash
    npm run build
    ```
 
-3. Levantar un servidor local para previsualizar el proyecto:
+6. Levanta el servidor local:
 
    ```bash
    npm run dev:server
    ```
 
-4. Accede a la aplicación en tu navegador web en la dirección `http://localhost:3000`.
-
-## Construido con 
-
-* [Node.js](https://nodejs.org/) - Backend de JavaScript
-* [EJS](https://ejs.co/) - Motor de plantillas para JavaScript
-* [Tailwind CSS](https://tailwindcss.com/) - Framework de diseño CSS
-* [MySQL](https://www.mysql.com/) - Sistema de gestión de bases de datos
+7. Abre `http://localhost:3000` en tu navegador.
 
 ## Más vistas previas
 

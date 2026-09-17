@@ -43,7 +43,7 @@ Proyecto realizado para la materia de **Ingeniería de Requisitos** de la Univer
 1. Clona este repositorio:
 
    ```bash
-   git clone https://github.com/maalvarezmu/app-chivas.git
+   git clone https://github.com/maalvarezmu/chivas-ticket-booking-system.git
    ```
 
 2. Crea el archivo `.env` en la raíz del proyecto:
